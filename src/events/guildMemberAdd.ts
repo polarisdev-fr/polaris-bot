@@ -6,7 +6,7 @@ import { request } from "undici";
 
 const event: IEvent = {
     name: Events.GuildMemberAdd,
-    once: true,
+    once: false,
     execute: async (member: GuildMember) => {
         const canvas = createCanvas(440, 200);
         const ctx = canvas.getContext('2d');
@@ -41,14 +41,6 @@ const event: IEvent = {
         const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'profile.png' });
 
        const embed = new EmbedBuilder()
-        .addFields({
-            name: 'Welcome!',
-            value: `Welcome to the server, ${member.user.username}!`,
-        },
-        {
-            name: 'User Joined',
-            value: `User ${member.user.username}#${member.user.discriminator} has joined the server.`,
-        })
         .setColor('Blurple')
         .setImage('attachment://profile.png')
         .setFooter({ text: `${member.user.username}#${member.user.discriminator}`, iconURL: member.user.displayAvatarURL() })

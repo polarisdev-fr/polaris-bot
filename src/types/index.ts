@@ -1,8 +1,8 @@
 import { CustomClient } from "@/client/customClient";
-import { Events, SlashCommandBuilder, StringSelectMenuInteraction } from "discord.js";
+import { Events, SlashCommandBuilder, SlashCommandOptionsOnlyBuilder, StringSelectMenuInteraction } from "discord.js";
 
 interface ICommand {
-    data: SlashCommandBuilder;
+    data: SlashCommandBuilder | SlashCommandOptionsOnlyBuilder;
     category: string;
     execute: (...args: any[]) => void;
 }
