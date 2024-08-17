@@ -3,6 +3,7 @@ import { config } from "dotenv";
 import { CustomClient } from "./client/customClient";
 import { loadEvents } from "./handlers/events";
 import { loadSlashCommands } from "./handlers/slashCommands";
+import { loadSelectMenuHandlers } from "./handlers/selectMenu";
 
 config();
 
@@ -26,6 +27,7 @@ client.commands = new Collection();
 
 loadEvents(client);
 loadSlashCommands(client);
+loadSelectMenuHandlers(client);
 
 client.login(process.env.BOT_TOKEN);
 

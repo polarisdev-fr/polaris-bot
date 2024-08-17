@@ -10,6 +10,7 @@ const command: ICommand = {
     data: new SlashCommandBuilder()
         .setName('profile')
         .setDescription('View your profile.'),
+    category: 'user',
     execute: async (interaction: CommandInteraction) => {
 
         const canvas = createCanvas(440, 200);

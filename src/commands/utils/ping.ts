@@ -6,6 +6,7 @@ const command: ICommand = {
     data: new SlashCommandBuilder()
         .setName('ping')
         .setDescription('Replies with Pong!'),
+    category: 'utils',
     execute: async (interaction: CommandInteraction) => {
         const embed = new EmbedBuilder()
             .setAuthor({ name: interaction.client.user?.username as string, iconURL: interaction.user.displayAvatarURL() })
