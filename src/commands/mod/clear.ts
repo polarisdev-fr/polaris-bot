@@ -6,7 +6,12 @@ const command: ICommand = {
     data: new SlashCommandBuilder()
         .setName('clear')
         .setDescription('Clears messages in a channel.')
-        .addIntegerOption(option => option.setName('amount').setDescription('Amount of messages to clear.').setRequired(false)),
+        .addIntegerOption(option => option
+            .setName('amount')
+            .setDescription('Amount of messages to clear.')
+            .setRequired(false).setMinValue(1)
+            .setMaxValue(100)
+        ),
     category: 'mod',
     execute: async (interaction: CommandInteraction) => {
         const amount = interaction.options.get('amount', false)?.value as number || 100;

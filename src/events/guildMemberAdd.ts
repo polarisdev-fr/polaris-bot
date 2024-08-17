@@ -1,4 +1,5 @@
 import { IEvent } from "@/types";
+import { applyText } from "@/utils/textUtil";
 import { createCanvas, loadImage } from "@napi-rs/canvas";
 import { AttachmentBuilder, EmbedBuilder, Events, GuildMember } from "discord.js";
 import path = require("path");
@@ -27,16 +28,20 @@ const event: IEvent = {
 
         ctx.restore();
 
-        ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
         ctx.font = '28px sans-serif';
         ctx.fillStyle = '#ffffff';
 
         ctx.fillText('Profile', 0, 0);
 
-        const username = `${member?.user.username}!`;
-        ctx.font = '20px sans-serif';
-        ctx.fillText(username, 0, 0);
+        // Position the text and draw it on the canvas
+        ctx.font = '30px bold sans-serif';
+        ctx.fillText('Welcome !', canvas.width / 2.5, canvas.height / 3);
+
+        // Apply text for the username and draw it
+        const username = `${member?.user.username}`;
+        ctx.font = applyText(canvas, username);
+        ctx.fillText(username, canvas.width / 2.5, canvas.height / 1.8);
 
         const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'profile.png' });
 

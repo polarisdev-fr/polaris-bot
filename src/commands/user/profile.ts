@@ -23,6 +23,22 @@ const command: ICommand = {
         const { body } = await request(interaction.user.displayAvatarURL({ extension: 'jpg' }));
         const avatar = await loadImage(body);
 
+         // Reset clipping path to allow full canvas drawing
+         ctx.restore();
+ 
+         // Set font and fill style for the text
+         ctx.font = '28px sans-serif';
+         ctx.fillStyle = '#fff';
+ 
+         // Position the text and draw it on the canvas
+         ctx.font = '30px bold sans-serif';
+         ctx.fillText('Profile', canvas.width / 2.5, canvas.height / 3);
+ 
+         // Apply text for the username and draw it
+         const username = `${interaction.member?.user.username}`;
+         ctx.font = applyText(canvas, username);
+         ctx.fillText(username, canvas.width / 2.5, canvas.height / 1.8);
+
         // Start the circular clipping path
         ctx.beginPath();
         ctx.arc(102, 100, 30, 0, Math.PI * 2, true);
@@ -31,23 +47,6 @@ const command: ICommand = {
 
         // Draw the avatar image within the circular clipping area
         ctx.drawImage(avatar, 72, 70, 60, 60);
-
-        // Reset clipping path to allow full canvas drawing
-        ctx.restore();
-
-        ctx.strokeRect(0, 0, canvas.width, canvas.height);
-
-        // Set font and fill style for the text
-        ctx.font = '28px sans-serif';
-        ctx.fillStyle = '#ffffff';
-
-        // Position the text and draw it on the canvas
-        ctx.fillText('Profile', 0, 0);
-
-        // Apply text for the username and draw it
-        const username = `${interaction.member?.user.username}!`;
-        ctx.font = '20px sans-serif';
-        ctx.fillText(username, 0, 0);
 
         // Save the image to a file (for testing)
         fs.writeFileSync('profile.png', canvas.toBuffer('image/png'));
