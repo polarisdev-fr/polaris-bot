@@ -17,11 +17,12 @@ const event: IEvent = {
         try {
             await command.execute(interaction);
         } catch (error) {
-            console.error(error);
             if (interaction.replied || interaction.deferred) {
                 await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+                console.error(`Error while executing command ${interaction.commandName}: ${error}`);
             } else {
                 await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+                console.error(`Error while executing command ${interaction.commandName}: ${error}`);
             }
         }
     },
