@@ -1,0 +1,10 @@
+{
+  "name": "polarisbot",
+  "version": "0.0.1-SNAPSHOT",
+  "description": "Official Bot for polaris server",
+  "main": "index.js",
+  "repository": "git@github.com:polarisdev-fr/polaris-bot.git",
+  "author": "PDT",
+  "license": "MIT",
+  "private": true
+}
