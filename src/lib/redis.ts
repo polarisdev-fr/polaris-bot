@@ -4,8 +4,8 @@ export class RedisClient {
   private client: Redis;
 
   constructor() {
-    this.client = new Redis(6379, "192.168.1.200", {
-        password: "P@55w0rd",
+    this.client = new Redis(process.env.REDIS_PORT as unknown as number, process.env.REDIS_HOST as string, {
+        password: process.env.REDIS_PASSWORD,
     });
   }
 
