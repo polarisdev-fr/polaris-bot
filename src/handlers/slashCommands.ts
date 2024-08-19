@@ -20,7 +20,7 @@ export async function loadSlashCommands(client: CustomClient) {
             const command: ICommand = commandModule.default;
             // Set a new item in the Collection with the key as the command name and the value as the exported module
             if ('data' in command && 'execute' in command) {
-                client.commands.set(command.data.name, command);
+                client.commands.set(command.data.name as any, command);
                 commands.push(command.data.toJSON());
             } else {
                 console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
