@@ -1,4 +1,4 @@
-import { Collection, IntentsBitField, Partials } from "discord.js";
+import { ActivityType, Collection, IntentsBitField, Partials } from "discord.js";
 import { config } from "dotenv";
 import { CustomClient } from "./client/customClient";
 import { loadEvents } from "./handlers/events";
@@ -14,17 +14,23 @@ const client = new CustomClient(
             IntentsBitField.Flags.GuildMessages,
             IntentsBitField.Flags.GuildMembers,
             IntentsBitField.Flags.MessageContent,
+            IntentsBitField.Flags.GuildPresences,
         ],
         partials: [
             Partials.Channel,
             Partials.GuildMember,
             Partials.Message,
-        ]
+        ],
     }
 );
 
 client.commands = new Collection();
 
+client.user?.setPresence({
+    activities: [{ name: `discord.js v14`, type: ActivityType.Watching }],
+    status: 'dnd',
+});
+  
 loadEvents(client);
 loadSlashCommands(client);
 loadSelectMenuHandlers(client);

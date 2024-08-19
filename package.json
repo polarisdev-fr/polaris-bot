@@ -15,7 +15,9 @@
   "dependencies": {
     "@napi-rs/canvas": "^0.1.53",
     "discord.js": "^14.15.3",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "ioredis": "^5.4.1",
+    "string-progressbar": "^1.0.4"
   },
   "devDependencies": {
     "@types/node": "^22.4.0",
