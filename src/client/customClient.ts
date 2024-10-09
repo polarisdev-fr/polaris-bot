@@ -1,4 +1,3 @@
-import { RedisClient } from "@/lib/redis";
 import { ICommand } from "@/types";
 import { Client, Collection } from "discord.js";
 
