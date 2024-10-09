@@ -25,11 +25,6 @@ const client = new CustomClient(
 );
 
 client.commands = new Collection();
-
-client.user?.setPresence({
-    activities: [{ name: `discord.js v14`, type: ActivityType.Watching }],
-    status: 'dnd',
-});
   
 loadEvents(client);
 loadSlashCommands(client);

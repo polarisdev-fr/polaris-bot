@@ -1,11 +1,12 @@
 import { CustomClient } from "@/client/customClient";
 import { ICommand } from "@/types";
-import { Colors, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { Colors, CommandInteraction, EmbedBuilder, PermissionsBitField, SlashCommandBuilder } from "discord.js";
 
 const command: ICommand = {
     data: new SlashCommandBuilder()
         .setName('ping')
         .setDescription('Replies with Pong!'),
+    permissions: [PermissionsBitField.Flags.ManageMessages],
     category: 'utils',
     execute: async (interaction: CommandInteraction) => {
         const embed = new EmbedBuilder()

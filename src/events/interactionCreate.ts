@@ -15,7 +15,11 @@ const event: IEvent = {
         }
 
         try {
-            await command.execute(interaction);
+            if(interaction.user.permissions.has(command.permissions)) {
+                await command.execute(interaction);
+            } else {
+                await interaction.reply({ content: 'You do not have the required permissions to execute this command!', ephemeral: true });
+            }
         } catch (error) {
             if (interaction.replied || interaction.deferred) {
                 await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });

@@ -9,10 +9,10 @@ export interface CustomClient extends Client {
 export class CustomClient extends Client {
     commands: Collection<ICommand, any>;
     // make client.redis available
-    redis: RedisClient;    
+    //redis: RedisClient;    
     constructor(options: any) {
         super(options);
         this.commands = new Collection();
-        this.redis = new RedisClient();
+        //this.redis = new RedisClient();
     }
 }

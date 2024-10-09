@@ -1,12 +1,13 @@
 import { CustomClient } from "@/client/customClient";
 import { ICommand } from "@/types";
-import { CommandInteraction, EmbedBuilder } from "discord.js";
+import { CommandInteraction, EmbedBuilder, PermissionsBitField } from "discord.js";
 const { ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, SlashCommandBuilder } = require('discord.js');
 
 const command: ICommand = {
     data: new SlashCommandBuilder()
         .setName('help')
         .setDescription('Displays a list of available commands.'),
+    permissions: [PermissionsBitField.Flags.ManageMessages],
     category: 'utils',
     execute: async (interaction: CommandInteraction) => {
         const client = interaction.client as CustomClient;

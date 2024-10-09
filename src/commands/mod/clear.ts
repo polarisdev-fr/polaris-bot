@@ -1,6 +1,6 @@
 import { CustomClient } from "@/client/customClient";
 import { ICommand } from "@/types";
-import { Colors, CommandInteraction, EmbedBuilder, SlashCommandBuilder, TextChannel } from "discord.js";
+import { Colors, CommandInteraction, EmbedBuilder, PermissionsBitField, SlashCommandBuilder, TextChannel } from "discord.js";
 
 const command: ICommand = {
     data: new SlashCommandBuilder()
@@ -12,6 +12,7 @@ const command: ICommand = {
             .setRequired(false).setMinValue(1)
             .setMaxValue(100)
         ),
+    permissions: [PermissionsBitField.Flags.ManageMessages],
     category: 'mod',
     execute: async (interaction: CommandInteraction) => {
         const amount = interaction.options.get('amount', false)?.value as number || 100;

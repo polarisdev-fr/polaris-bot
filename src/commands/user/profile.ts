@@ -1,5 +1,5 @@
 import { ICommand } from "@/types";
-import { AttachmentBuilder, Colors, CommandInteraction, EmbedBuilder, SlashCommandBuilder } from "discord.js";
+import { AttachmentBuilder, Colors, CommandInteraction, EmbedBuilder, PermissionsBitField, SlashCommandBuilder } from "discord.js";
 import { createCard } from "@/utils/cardUtil";
 
 const command: ICommand = {
@@ -7,6 +7,7 @@ const command: ICommand = {
         .setName('profile')
         .setDescription('View your profile.'),
     category: 'user',
+    permissions: [PermissionsBitField.Flags.SendMessages],
     execute: async (interaction: CommandInteraction) => {
 
         const card = await createCard(
